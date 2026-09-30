@@ -12,6 +12,7 @@ const categoryPhoto: Partial<Record<MenuCategory, { src: string; alt: string; po
   omakase: { src: "/images/plate-awabi.jpg", alt: "Steamed abalone with gold leaf on a green ceramic plate.", position: "40% 50%" },
   sushi: { src: "/images/nigiri-plate.jpg", alt: "Tuna and salmon nigiri on a pale ceramic plate with pickled ginger and wasabi." },
   sashimi: { src: "/images/sashimi-hinoki.jpg", alt: "Tuna belly, sea bream, and white fish sashimi on a hinoki board over shaved daikon." },
+  dessert: { src: "/images/dessert-wagashi.jpg", alt: "Three hand-shaped wagashi sweets, a green leaf, a pink flower and a peony, on a pale wooden board.", position: "35% 55%" },
   "small-plates": { src: "/images/bowl-chopsticks.jpg", alt: "A patterned brown bowl of firefly squid beside wooden chopsticks.", position: "62% 30%" },
 };
 
@@ -114,11 +115,27 @@ export function MenuBrowser() {
               </p>
               <h2 className="t-h1 mt-3">{category.label}</h2>
               <p className="t-lead measure mt-4 text-ash">{category.blurb}</p>
-              {photo ? (
-                <div className="mt-8 hidden lg:block">
-                  <Photo src={photo.src} alt={photo.alt} sizes="32vw" aspect="4 / 3" position={photo.position} />
-                </div>
-              ) : null}
+              <div className="mt-8">
+                {photo ? (
+                  <Photo
+                    src={photo.src}
+                    alt={photo.alt}
+                    sizes="(min-width: 1024px) 32vw, 100vw"
+                    aspect="4 / 3"
+                    position={photo.position}
+                    className="!aspect-[16/9] lg:!aspect-[4/3]"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="relative flex aspect-[16/9] items-center justify-center overflow-hidden bg-sumi lg:aspect-[4/3]"
+                  >
+                    <span lang="ja" className="t-kanji whitespace-nowrap text-[clamp(3.25rem,6.2vw,5.5rem)] tracking-[0.12em] text-kin">
+                      {category.jp}
+                    </span>
+                  </div>
+                )}
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

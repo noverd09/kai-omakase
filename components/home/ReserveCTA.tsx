@@ -11,9 +11,10 @@ export function ReserveCTA({
   body?: string;
 }) {
   return (
-    <section className="on-green section bg-tokiwa text-washi">
-      <div className="wrap">
-        <CounterLine tone="dark" />
+    <section className="on-green section relative overflow-hidden bg-tokiwa text-washi">
+      <span aria-hidden="true" data-glyph="回" className="watermark -bottom-[8%] -right-[4vw] text-[clamp(16rem,42vw,38rem)] text-washi" />
+      <div className="wrap relative">
+        <CounterLine tone="dark" labeled />
         <Reveal className="mt-16 max-w-4xl">
           <h2 className="t-display" style={{ fontSize: "clamp(2.5rem, 6.6vw, 5.25rem)" }}>
             {title}

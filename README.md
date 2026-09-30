@@ -18,6 +18,8 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, React Hook Form +
 
 ## Design
 
+Immersive layer, all restrained and reduced-motion safe: paper grain, a hero photograph that settles and drifts, word-by-word headline reveals, a pinned scroll story on the Experience section, a slow seasonal ticker, print-style registration marks, oversized decorative kanji, and a cropped wordmark footer.
+
 "Hinoki Ledger": a chef's ledger of courses on washi paper. The recurring brand device is the **counter line**, a hairline with eight gold seat marks (one per seat at the counter). It is the section divider, the scroll indicator, the seating picker, and the confirmation stamp. Full system in [`DESIGN.md`](DESIGN.md), which lints clean with `@google/design.md`.
 
 ## Architecture
@@ -65,7 +67,8 @@ npm run build && npm start
 - End-to-end run in Chrome (Playwright) over the full reservation flow, validation, the no-availability and server-error states, both lead forms, menu tabs, and keyboard behavior: 34 checks pass.
 - axe-core (WCAG 2 A/AA plus best practices) on all 7 pages at desktop and mobile widths: no violations.
 - No console errors, no horizontal scroll at 390px, no em dashes in shipped copy.
-- `prefers-reduced-motion` verified: no content is ever hidden.
+- `prefers-reduced-motion` verified: no content is ever hidden, and reveals never depend on JavaScript to stay readable.
+- Regression suite (Playwright): every scroll reveal fires and no image stays hidden, the pinned Experience story stays pinned and crossfades, no horizontal overflow at 16 widths from 320px to 2560px on all 7 pages, and every visible button and link has readable computed contrast.
 
 ## Roadmap
 

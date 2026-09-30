@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/site";
+import { Words } from "@/components/ui/Words";
 import { restaurant } from "@/data/restaurant";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button, TextLink } from "@/components/ui/Button";
@@ -17,7 +18,7 @@ export default function ContactPage() {
     <div className="section pt-10 lg:pt-16">
       <div className="wrap">
         <h1 className="t-display" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-          Contact
+          <Words text="Contact" mode="load" />
         </h1>
 
         <div className="mt-16 grid gap-16 lg:grid-cols-2 lg:gap-24">

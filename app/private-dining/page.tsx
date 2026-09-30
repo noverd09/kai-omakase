@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/site";
+import { Words } from "@/components/ui/Words";
 import { Photo } from "@/components/ui/Photo";
 import { ImageReveal, Reveal } from "@/components/ui/Reveal";
 import { CounterLine } from "@/components/ui/CounterLine";
@@ -29,7 +30,7 @@ export default function PrivateDiningPage() {
       <header className="section pb-[calc(var(--section-y)*0.6)] pt-10 lg:pt-16">
         <div className="wrap">
           <h1 className="t-display max-w-4xl" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-            The room, for your evening.
+            <Words text="The room, for your evening." mode="load" />
           </h1>
           <p className="t-lead measure mt-6 text-ash">
             On Mondays and after the regular seating, KAI opens for private dinners of six to twenty-four guests. We compose the
@@ -86,19 +87,20 @@ export default function PrivateDiningPage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-12">
             <ImageReveal className="sm:col-span-7">
               <Photo
-                src="/images/counter-chef.jpg"
-                alt="A chef in a white uniform behind the glass counter, with trays of fish on display."
+                src="/images/room-counter.jpg"
+                alt="A long pale hinoki counter set for service, with lacquer trays, green ceramic plates and tall windows onto a garden."
                 sizes="(min-width: 640px) 58vw, 100vw"
                 aspect="16 / 10"
-                position="50% 35%"
+                position="40% 50%"
               />
             </ImageReveal>
             <ImageReveal delay={0.1} className="sm:col-span-5 sm:mt-16">
               <Photo
-                src="/images/nigiri-salmon.jpg"
-                alt="Two pieces of salmon nigiri on a black slab, with tempura and soy sauce softly out of focus behind."
+                src="/images/counter-chef.jpg"
+                alt="A sushi chef in a white uniform and paper hat looks across the glass counter, with trays of tuna and mackerel below."
                 sizes="(min-width: 640px) 40vw, 100vw"
                 aspect="4 / 5"
+                position="55% 40%"
               />
             </ImageReveal>
           </div>
@@ -106,7 +108,7 @@ export default function PrivateDiningPage() {
         </div>
       </section>
 
-      <section id="inquiry" className="section bg-stone pt-[calc(var(--section-y)*0.8)]">
+      <section id="inquiry" className="on-stone section bg-stone pt-[calc(var(--section-y)*0.8)]">
         <div className="wrap grid gap-14 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
           <div>
             <h2 className="t-h1">Plan a private dinner</h2>

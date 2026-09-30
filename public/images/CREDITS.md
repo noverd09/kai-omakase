@@ -11,3 +11,6 @@ All photographs are CC0 / Public Domain, sourced through Openverse. No attributi
 | bowl-chopsticks.jpg | Ika sashimi | Brücke-Osteuropa, Wikimedia Commons | CC0 |
 | nigiri-plate.jpg | Sushi rolls and Nigiri | Jakub Kapusnak, Rawpixel | CC0 |
 | nigiri-salmon.jpg | Sushi Sake | Jamie Hamel-Smith, StockSnap | CC0 |
+| room-counter.jpg | Yamazato Restaurant, Sushi counter | Photo Republic, Wikimedia Commons | CC0 |
+| dessert-wagashi.jpg | Wagashi closeup 14 | Douglas Perkins, Wikimedia Commons | CC0 |
+| kaiseki-spread.jpg | IMG-2023-12-01-kaiseki | H the wizard, Wikimedia Commons | CC0 |

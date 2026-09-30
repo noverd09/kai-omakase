@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/site";
+import { Words } from "@/components/ui/Words";
 import { restaurant } from "@/data/restaurant";
 import { ReservationFlow } from "@/components/reservations/ReservationFlow";
 import { TextLink } from "@/components/ui/Button";
@@ -17,7 +18,7 @@ export default function ReservationsPage() {
         <header className="mb-14 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16">
           <div>
             <h1 className="t-display" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-              Reserve a Table
+              <Words text="Reserve a Table" mode="load" />
             </h1>
             <p className="t-lead measure mt-6 text-ash">
               Send us a request in six short steps. We reply by email within a day, and only then is your seat held.

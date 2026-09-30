@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/site";
+import { Words } from "@/components/ui/Words";
 import { Chapter } from "@/components/ui/Chapter";
 import { Photo } from "@/components/ui/Photo";
 import { ImageReveal } from "@/components/ui/Reveal";
@@ -19,7 +20,7 @@ export default function AboutPage() {
       <header className="section pb-0 pt-10 lg:pt-16">
         <div className="wrap">
           <h1 className="t-display max-w-4xl" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-            Cooking for fewer people, more carefully.
+            <Words text="Cooking for fewer people, more carefully." mode="load" />
           </h1>
           <div className="mt-12">
             <CounterLine />

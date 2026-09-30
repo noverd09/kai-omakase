@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/site";
+import { Words } from "@/components/ui/Words";
 import { MenuBrowser } from "@/components/menu/MenuBrowser";
 import { ReserveCTA } from "@/components/home/ReserveCTA";
 
@@ -16,7 +17,7 @@ export default function MenuPage() {
         <div className="wrap">
           <header className="mb-14 max-w-3xl">
             <h1 className="t-display" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-              The Menu
+              <Words text="The Menu" mode="load" />
             </h1>
             <p className="t-lead measure mt-6 text-ash">
               What follows changes with the market. Treat it as a record of the season, not a promise for the night.

@@ -54,12 +54,13 @@ export const menuItems: MenuItemRow[] = seed([
   { id: "plate-chawan", name: "Chawanmushi", description: "Egg custard · snow crab · ginkgo", category: "small-plates", price: 16 },
   { id: "plate-wagyu", name: "Wagyu Tataki", description: "Black garlic · ponzu · spring onion", category: "small-plates", price: 34 },
   { id: "plate-miso", name: "Clam Miso", description: "Red miso · littleneck · mitsuba", category: "small-plates", price: 12 },
-  { id: "plate-ika", name: "Firefly Squid", description: "Sumiso · daikon · toasted rice", category: "small-plates", price: 18, image: "/images/bowl-chopsticks.jpg", is_featured: true },
+  { id: "plate-ika", name: "Firefly Squid", description: "Sumiso · daikon · toasted rice", category: "small-plates", price: 18, image: "/images/bowl-chopsticks.jpg" },
   { id: "plate-tamago", name: "Tamago", description: "Sweet layered omelet · grated yam", category: "small-plates", price: 10 },
 
   // Dessert
   { id: "dessert-yuzu", name: "Yuzu Sorbet", description: "Cold, bright, brief", category: "dessert", price: 12 },
   { id: "dessert-hojicha", name: "Hojicha Pot de Crème", description: "Roasted tea · brown sugar · sea salt", category: "dessert", price: 14 },
+  { id: "dessert-wagashi", name: "Seasonal Wagashi", description: "Hand-shaped by the season · sweet bean · a cup of tea", category: "dessert", price: 14, image: "/images/dessert-wagashi.jpg" },
   { id: "dessert-sesame", name: "Black Sesame Mochi", description: "Warm mochi · toasted kinako", category: "dessert", price: 13 },
 
   // Sake

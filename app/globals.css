@@ -15,6 +15,8 @@
   --color-mist: #a39a85;
   --color-hair: #bdb39c;
   --color-ember: #8e3b2b;
+  /* Decorative only (giant footer wordmark). Never carries text a person needs to read. */
+  --color-sumi-2: #26231b;
 
   --font-serif: var(--font-newsreader), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -79,7 +81,7 @@ img {
   .t-display {
     font-family: var(--font-serif);
     font-weight: 300;
-    font-size: clamp(3rem, 8.4vw, 6.5rem);
+    font-size: clamp(3rem, 7.6vw, 6.25rem);
     line-height: 0.98;
     letter-spacing: -0.035em;
     text-wrap: balance;
@@ -154,6 +156,7 @@ img {
 
   /* Underlined text link with a drawn arrow. */
   .text-link {
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -209,13 +212,23 @@ dialog::backdrop {
   background: transparent;
 }
 
-/* Native form control fixes */
-input,
-select,
-textarea,
-button {
-  font: inherit;
-  color: inherit;
+/* Native form control fixes. In the base layer so Tailwind utilities (text-washi on a dark
+   button, for example) still win; unlayered, these rules silently overrode every utility. */
+@layer base {
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+/* Form fields on a stone panel need their own fill, or they vanish into it. */
+.on-stone input,
+.on-stone select,
+.on-stone textarea {
+  background-color: rgb(239 233 219 / 0.65);
 }
 
 /* Hero image wipe: runs on load with CSS only, so it never delays LCP behind JS. */
@@ -269,5 +282,177 @@ button {
     transform: none !important;
     clip-path: none !important;
     transition: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Refinement layer: paper, motion, and print-style details           */
+/* ------------------------------------------------------------------ */
+
+/* Paper grain. Static, pointer-transparent, a whisper of texture so washi feels like paper. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Hero: the photograph settles in, and drifts as you leave it (progressive enhancement). */
+@keyframes settle {
+  from {
+    transform: scale(1.16);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.settle {
+  animation: settle 2.8s var(--ease-quart) both;
+}
+@keyframes hero-drift {
+  to {
+    transform: translate3d(0, 7%, 0) scale(1.05);
+  }
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-drift {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+  }
+}
+
+/* Words rise from a mask. Load mode runs on its own; scroll mode waits for the observer. */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+.word-in {
+  display: inline-block;
+  transition: transform 0.95s var(--ease-quart);
+  transition-delay: calc(var(--i, 0) * 70ms + var(--reveal-delay, 0s));
+}
+.words[data-armed="true"]:not([data-shown="true"]) .word-in {
+  transform: translateY(112%);
+}
+@keyframes word-rise {
+  from {
+    transform: translateY(112%);
+  }
+  to {
+    transform: none;
+  }
+}
+.words-load .word-in {
+  animation: word-rise 1.05s var(--ease-quart) both;
+  animation-delay: calc(var(--i, 0) * 85ms + 0.15s);
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .word-in {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Seasonal ticker. Two identical runs slide by half their combined width. */
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 70s linear infinite;
+}
+@media (hover: hover) {
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+  }
+  .ticker-track [data-dup] {
+    display: none;
+  }
+}
+
+/* Print-style registration marks at the corners of a framed photograph. */
+.crop-marks {
+  position: relative;
+}
+.crop-marks::before,
+.crop-marks::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+.crop-marks::before {
+  top: 10px;
+  left: 10px;
+  border-top: 1px solid var(--color-washi);
+  border-left: 1px solid var(--color-washi);
+}
+.crop-marks::after {
+  right: 10px;
+  bottom: 10px;
+  border-right: 1px solid var(--color-washi);
+  border-bottom: 1px solid var(--color-washi);
+}
+
+/* Decorative glyphs are drawn with CSS content, not text nodes: they are ornament, so
+   screen readers and contrast checkers should not see them as copy. */
+.watermark::before,
+.giant-word::before {
+  content: attr(data-glyph);
+}
+
+/* Giant decorative glyph behind a section. */
+.watermark {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-mincho);
+  font-weight: 500;
+  line-height: 0.8;
+  color: currentColor;
+  opacity: 0.05;
+}
+
+/* Notched phones and landscape phones */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --section-y: 56px;
+  }
+  .hero {
+    min-height: 0 !important;
+  }
+  .stick-bar {
+    position: static !important;
   }
 }

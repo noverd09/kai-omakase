@@ -230,7 +230,7 @@ export function ReservationFlow() {
                   </div>
 
                   {/* Footer actions. On small screens they stick to the bottom for thumb reach. */}
-                  <div className="sticky bottom-0 -mx-5 mt-12 flex items-center justify-between gap-4 border-t border-hair bg-washi px-5 py-4 sm:mx-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:py-0 lg:static">
+                  <div className="stick-bar safe-bottom sticky bottom-0 -mx-5 mt-12 flex items-center justify-between gap-4 border-t border-hair bg-washi px-5 pt-4 sm:mx-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:py-0 lg:static">
                     <button
                       type="button"
                       onClick={back}

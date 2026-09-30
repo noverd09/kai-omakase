@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { nav } from "@/lib/site";
-import { restaurant, social, tagline } from "@/data/restaurant";
+import { restaurant, tagline } from "@/data/restaurant";
 import { Button } from "@/components/ui/Button";
 import { CounterLine } from "@/components/ui/CounterLine";
 import { Logo } from "./Logo";
@@ -9,7 +9,7 @@ import { Logo } from "./Logo";
 export function Footer() {
   const today = restaurant.opening_hours;
   return (
-    <footer className="on-ink bg-sumi text-washi">
+    <footer className="on-ink overflow-hidden bg-sumi text-washi">
       <div className="wrap section">
         <CounterLine tone="dark" />
 
@@ -23,7 +23,7 @@ export function Footer() {
           </Button>
         </div>
 
-        <div className="mt-16 grid gap-12 border-t border-mist/30 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-12 border-t border-mist/30 pt-10 sm:grid-cols-2 lg:grid-cols-3">
           <nav aria-label="Footer">
             <p className="t-label mb-4 text-kin">Explore</p>
             <ul className="space-y-1 text-sm">
@@ -69,22 +69,6 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="text-sm text-mist">
-            <p className="t-label mb-4 text-kin">Follow</p>
-            <ul className="space-y-1">
-              {social.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    className="inline-flex min-h-11 items-center hover:text-washi"
-                    {...(s.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
-                  >
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <p className="mt-14 border-t border-mist/30 pt-6 text-xs text-mist">
@@ -92,6 +76,14 @@ export function Footer() {
           and menu are invented. Photographs are public-domain stand-ins; see the credits file in the repository.
         </p>
       </div>
+
+      {/* Oversized wordmark, cropped by the page edge. Decorative only. */}
+      <div
+        aria-hidden="true"
+        data-glyph="KAI"
+        className="giant-word pointer-events-none -mb-[0.16em] select-none overflow-hidden text-center font-serif font-light leading-[0.78] tracking-[0.14em] text-sumi-2"
+        style={{ fontSize: "clamp(7rem, 30vw, 28rem)" }}
+      />
     </footer>
   );
 }

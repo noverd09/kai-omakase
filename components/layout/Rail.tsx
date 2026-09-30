@@ -68,7 +68,7 @@ export function Rail() {
     <>
       {/* Desktop rail */}
       <header className="fixed inset-y-0 left-0 z-40 hidden w-[88px] flex-col items-center justify-between border-r border-hair bg-washi py-7 lg:flex">
-        <Link href="/" aria-label="KAI, home" className="t-kanji text-[2rem] text-tokiwa">
+        <Link href="/" aria-label="KAI, home" className="t-kanji flex h-11 w-11 items-center justify-center text-[2rem] text-tokiwa">
           回
         </Link>
 
@@ -94,8 +94,8 @@ export function Rail() {
       </header>
 
       {/* Mobile bar */}
-      <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-hair bg-washi px-5 lg:hidden">
-        <Link href="/" aria-label="KAI, home">
+      <header className="safe-top sticky top-0 z-40 flex min-h-16 items-center justify-between border-b border-hair bg-washi px-5 lg:hidden">
+        <Link href="/" aria-label="KAI, home" className="inline-flex min-h-11 items-center">
           <Logo />
         </Link>
         <div className="flex items-center gap-2">

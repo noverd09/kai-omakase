@@ -2,6 +2,7 @@ import Link from "next/link";
 import { pageMetadata } from "@/lib/site";
 import { Chapter } from "@/components/ui/Chapter";
 import { Photo } from "@/components/ui/Photo";
+import { Words } from "@/components/ui/Words";
 import { ImageReveal } from "@/components/ui/Reveal";
 import { TextLink } from "@/components/ui/Button";
 import { CounterLine } from "@/components/ui/CounterLine";
@@ -26,9 +27,9 @@ export default function ExperiencePage() {
   return (
     <>
       <header className="section pb-0 pt-10 lg:pt-16">
-        <div className="wrap max-w-5xl lg:mx-0 lg:ml-[max(var(--gutter),calc((100vw-var(--rail-w)-1320px)/2))]">
-          <h1 className="t-display" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
-            An evening, in six movements.
+        <div className="wrap">
+          <h1 className="t-display max-w-5xl" style={{ fontSize: "clamp(2.75rem, 6.6vw, 5rem)" }}>
+            <Words text="An evening, in six movements." mode="load" />
           </h1>
           <p className="t-lead measure mt-6 text-ash">
             KAI is built around one idea: that a meal is better when nothing competes with it. Here is how that shapes the

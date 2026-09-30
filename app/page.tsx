@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/site";
 import { Hero } from "@/components/home/Hero";
 import { OmakaseIntro } from "@/components/home/OmakaseIntro";
 import { ChefsSelection } from "@/components/home/ChefsSelection";
+import { SeasonTicker } from "@/components/home/SeasonTicker";
 import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { Story } from "@/components/home/Story";
 import { ChefSection } from "@/components/home/ChefSection";
@@ -21,6 +22,7 @@ export default function Home() {
       <Hero />
       <OmakaseIntro />
       <ChefsSelection />
+      <SeasonTicker />
       <ExperienceTimeline />
       <Story />
       <ChefSection />
