@@ -4,7 +4,7 @@ A premium restaurant website and reservation lead-generation system for **KAI**,
 
 > KAI is fictional. The address, phone number, chef, menu and prices are invented. Photographs are public-domain stand-ins (see [`public/images/CREDITS.md`](public/images/CREDITS.md)).
 
-**Live:** https://kai.vercel.app
+**Live:** https://kai-omakase.vercel.app
 
 ## The journey it is built around
 

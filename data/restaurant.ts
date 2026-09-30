@@ -35,7 +35,7 @@ export const social = [
 
 export const site = {
   name: "KAI",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kai.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kai-omakase.vercel.app",
   description:
     "KAI is an eight-seat Japanese omakase counter. One seating each evening, chef-led, seasonal, quietly luxurious. A fictional portfolio project.",
 } as const;
