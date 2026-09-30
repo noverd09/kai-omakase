@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/*
+ * Tokens come from DESIGN.md ("Hinoki Ledger"). Change a value here and the
+ * whole site follows; nothing else in the codebase hardcodes a hex.
+ */
+@theme {
+  --color-sumi: #17150f;
+  --color-tokiwa: #22392d;
+  --color-kin: #b8954f;
+  --color-kin-deep: #7d6229;
+  --color-stone: #d8cfbb;
+  --color-washi: #efe9db;
+  --color-ash: #5e5747;
+  --color-mist: #a39a85;
+  --color-hair: #bdb39c;
+  --color-ember: #8e3b2b;
+
+  --font-serif: var(--font-newsreader), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mincho: var(--font-shippori), "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+:root {
+  /* One section rhythm, reused at every seam. */
+  --section-y: clamp(72px, 10vw, 128px);
+  --rail-w: 0px;
+  --gutter: clamp(20px, 4vw, 40px);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --rail-w: 88px;
+  }
+}
+
+html {
+  background: var(--color-washi);
+  color: var(--color-sumi);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100svh;
+  background: var(--color-washi);
+  color: var(--color-sumi);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-tokiwa);
+  color: var(--color-washi);
+}
+
+/* Focus: tokiwa on paper, washi on ink. Never removed, only restyled. */
+:focus-visible {
+  outline: 2px solid var(--color-tokiwa);
+  outline-offset: 3px;
+}
+.on-ink :focus-visible,
+.on-green :focus-visible {
+  outline-color: var(--color-washi);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Type scale */
+@layer components {
+  .t-display {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(3rem, 8.4vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .t-h1 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .t-h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .t-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .t-lead {
+    font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+    line-height: 1.6;
+  }
+  .t-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .t-num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .t-kanji {
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .measure {
+    max-width: 62ch;
+  }
+
+  /* Layout primitives */
+  .section {
+    padding-block: var(--section-y);
+  }
+  .wrap {
+    /* padding-inline only, so section block padding is never zeroed by a shorthand */
+    padding-inline: var(--gutter);
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1320px;
+  }
+
+  /* Underlined text link with a drawn arrow. */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding-block: 0.75rem;
+    min-height: 44px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 calc(100% - 0.6rem);
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-quart);
+  }
+  .text-link:hover {
+    background-size: 0% 1px;
+    background-position: 100% calc(100% - 0.6rem);
+  }
+  .text-link .arrow {
+    transition: transform 0.3s var(--ease-quart);
+  }
+  .text-link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Menu ledger row hover */
+  .ledger-row {
+    transition: transform 0.3s var(--ease-quart);
+  }
+  @media (hover: hover) {
+    .ledger-row:hover {
+      transform: translateX(4px);
+    }
+  }
+}
+
+/* Motion is decoration. Remove movement, keep content. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+/* Native form control fixes */
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Hero image wipe: runs on load with CSS only, so it never delays LCP behind JS. */
+@keyframes wipe-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.wipe-in {
+  animation: wipe-in 1.3s var(--ease-quart) both;
+}
+.rise-in {
+  animation: rise-in 0.9s var(--ease-quart) both;
+}
+
+/* Scroll reveals. Visible by default; hidden only once JS marks an element as armed. */
+.reveal {
+  transition:
+    opacity 0.8s var(--ease-quart),
+    transform 0.8s var(--ease-quart);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal[data-armed="true"]:not([data-shown="true"]) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal-wipe {
+  transition: clip-path 1.1s var(--ease-quart);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-wipe[data-armed="true"]:not([data-shown="true"]) {
+  clip-path: inset(0 100% 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-wipe {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}
