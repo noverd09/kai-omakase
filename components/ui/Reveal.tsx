@@ -54,7 +54,12 @@ export function Reveal({
   );
 }
 
-/** Slides a photograph in like a panel: a clip-path wipe. */
+/**
+ * Slides a photograph in like a panel: a clip-path wipe.
+ * The observed element is the OUTER wrapper and the clipped element is the inner one,
+ * because a browser treats an element clipped away by its own clip-path as not
+ * intersecting, so observing the clipped node would never fire.
+ */
 export function ImageReveal({
   children,
   delay = 0,
@@ -67,7 +72,7 @@ export function ImageReveal({
   const ref = useReveal<HTMLDivElement>();
   return (
     <div ref={ref} className={cn("reveal-wipe", className)} style={{ "--reveal-delay": `${delay}s` } as CSSProperties}>
-      {children}
+      <div className="reveal-wipe-inner">{children}</div>
     </div>
   );
 }

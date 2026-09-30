@@ -255,16 +255,16 @@ button {
   opacity: 0;
   transform: translateY(16px);
 }
-.reveal-wipe {
+.reveal-wipe-inner {
   transition: clip-path 1.1s var(--ease-quart);
   transition-delay: var(--reveal-delay, 0s);
 }
-.reveal-wipe[data-armed="true"]:not([data-shown="true"]) {
+.reveal-wipe[data-armed="true"]:not([data-shown="true"]) > .reveal-wipe-inner {
   clip-path: inset(0 100% 0 0);
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal-wipe {
+  .reveal-wipe-inner {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
